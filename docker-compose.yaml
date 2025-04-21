@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  graphql-faker-server:
+    image: jparkkennaby/graphql-faker:latest # todo rename image to graphql-faker-server
+    container_name: graphql-faker-server
+    ports:
+      - "9092:9092" # expose server
+    environment:
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS}
+      - PORT=${PORT}
+      - CUSTOM_HEADERS=${CUSTOM_HEADERS}
+      - SCHEMA_FILE_NAME=${SCHEMA_FILE_NAME}
+      - FORWARD_HEADERS=${FORWARD_HEADERS}
+      - OPEN_BROWSER=${OPEN_BROWSER}
+      - EXTEND_URL=${EXTEND_URL}
+      - AUTH_TOKEN=${AUTH_TOKEN} # required for voyager (if voyager required auth)
+    restart: unless-stopped
+
+  graphql-faker-editor:
+    image: jparkkennaby/graphql-editor:latest # todo graphql-faker-editor
+    container_name: graphql-faker-editor
+    ports:
+      - "8080:8080" # expose editor
+    environment:
+      - VITE_API_URL=${VITE_API_URL}
+      - VITE_AUTH_TOKEN=${VITE_AUTH_TOKEN} # required for voyager (if voyager required auth)
+    restart: unless-stopped
+    depends_on: 
+      - graphql-faker-server
