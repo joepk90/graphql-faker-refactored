@@ -2,12 +2,12 @@
 
 ## Important
 - [ ] Document extending a Type from the https://swapi-graphql.netlify.app/graphql endpint
-- [ ] Update `ENV VARS` to match existing setup - `FORWARD_HEADERS`/`CUSTOM_HEADERS` have been mixed up. Also `OPEN_BROWSER` opens the server, not the editor.
 - [ ] Organise/Update Documentation
     - [ ] Move readme notes to this project + add documentation to a development.md file here
     - [ ] Review documentation in this file
     - [ ] Improve documentation on exentending/overrding types
     - [ ] Update repository names!
+- [ ] Update `ENV VARS` to match existing setup - `FORWARD_HEADERS`/`CUSTOM_HEADERS` have been mixed up. Also `OPEN_BROWSER` opens the server, not the editor.
 
 
 
@@ -36,6 +36,7 @@
 
 ## Nice to have's
 - [ ] Setup Gihhub Workflows to automatically deploy to Dockerhub for both projects
+- [ ] Setup a Dockerfile that runs both projects, so the service can be run without cloning the repo.
 
 ### Editor
 - [ ] Setup a Provider for the App state logic - A lot could be moved out of the App component.
