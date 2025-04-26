@@ -1,12 +1,12 @@
 # To Do's
 
 ## Important
-- [ ] Document extending a Type from the https://swapi-graphql.netlify.app/graphql endpint
-- [ ] Organise/Update Documentation
-    - [ ] Move readme notes to this project + add documentation to a development.md file here
-    - [ ] Review documentation in this file
-    - [ ] Improve documentation on exentending/overrding types
-    - [ ] Update repository names!
+- [x] Document extending a Type from the https://swapi-graphql.netlify.app/graphql endpint
+- [x] Organise/Update Documentation
+    - [x] Move readme notes to this project + add documentation to a development.md file here
+    - [x] Review documentation in the readme file
+    - [x] Improve documentation on exentending/overrding types
+    - [x] Update repository names!
 - [ ] Update `ENV VARS` to match existing setup - `FORWARD_HEADERS`/`CUSTOM_HEADERS` have been mixed up. Also `OPEN_BROWSER` opens the server, not the editor.
 
 
@@ -41,7 +41,7 @@
 ### Editor
 - [ ] Setup a Provider for the App state logic - A lot could be moved out of the App component.
 - [ ] Update the schema editor Theme! - the original theme was nicer
-- [ ] Move Faker definitions to the backend (eitehr move validation logic to back end, or move validation logic to NPM package)
+- [ ] Move Faker definitions to the backend (either move validation logic to back end, or move validation logic to NPM package)
 - [ ] Fix minor Editor issues:
     - keyboard shortcuts aren't working (ctr+z, crt+s etc.)
 	- autocomplete doesn't seem to use the option you selected in the tooltip - it just uses the first...
