@@ -5,10 +5,10 @@
 This project is technically a refactor of the [https://github.com/graphql-kit/graphql-faker](github.com/graphql-kit/graphql-faker) project - The dependancies have been updated and the project modernised. React has been updated, as well as the Code Editor (Code Mirror).
 
 The Back End Project can be found here:
-[github.com/joepk90/graphql-faker](https://github.com/joepk90/graphql-faker) 
+[github.com/joepk90/graphql-faker-server](https://github.com/joepk90/graphql-faker-server) 
 
 The Front End Project can be found here:
-[https://github.com/joepk90/graphql-editor](github.com/joepk90/graphql-editor)
+[github.com/joepk90/graphql-faker-editor](https://github.com/joepk90/graphql-faker-editor)
 
 To contribute to the project, see the development guide [here](https://github.com/joepk90/graphql-faker-refactored/blob/main/development.md).
 
