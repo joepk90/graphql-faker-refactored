@@ -2,25 +2,83 @@
 
 # GraphQL Faker Refactored
 
-This project is technically a refactor of the [https://github.com/graphql-kit/graphql-faker](github.com/graphql-kit/graphql-faker) project - The dependancies have been updated and the project modernised.
+This project is technically a refactor of the [https://github.com/graphql-kit/graphql-faker](github.com/graphql-kit/graphql-faker) project - The dependancies have been updated and the project modernised. React has been updated, as well as the Code Editor (Code Mirror).
 
 The Back End Project can be found here:
 [github.com/joepk90/graphql-faker](https://github.com/joepk90/graphql-faker) 
 
 The Front End Project can be found here:
-[https://github.com/joepk90/graphql-editor](github.com/joepk90/graphql-editor) 
+[https://github.com/joepk90/graphql-editor](github.com/joepk90/graphql-editor)
+
+To contribute to the project, see the development guide [here](https://github.com/joepk90/graphql-faker-refactored/blob/main/development.md).
 
 
-## Reasoning
-The main reason for making this project was to change the functionality of extending types. It is now possible to override existing types and return the data that you define. For example:
+## Reasoning for the Refactor
+The main reason for making this project was to change the functionality of extending Types.
 
+In the original project, it was not possible override existing fields on existing Types, only add new fields to existing Types.
+
+Looking at the existing project, it seemed to me there was a great deal of duplicated and unneccesary logic, especially around the options object which get passed around everywhere. In order to understand where this issue was occuring, understanding the project was required, which led to a refactor; seperating the Editor from the Server, removing the `options` config object and `cli` logic and opting for using a `.env` file and `docker-compose`.
+
+It is now possible to override fields on existing types and return data specified in the schema editor. To see this in action the following Schema override and Query can be used.
+
+For this example the public `https://swapi-graphql.netlify.app` endpoint is being used, which has an existing `Film` type and `allFilms` Query which returns a list of films. In the example below, we are overriding the `Film` type, and define the the values of the film titles ourselves:
+
+<b>Schema extension to add to the Editor:</b>
 ```
-extend type PreExistingType 	{
-  	PreExisting: Boolean @examples(values: [false])
+extend type Film {
+  title: String @examples(values: [
+    "The Terminator",
+    "Terminator 2: Judgement Day",
+    "Terminaator 3: Rise of the Machines"
+  ])
+  rating: Int @examples(values: [5, 4, 1])
 }
 ```
 
-# Original Documentation (Edited Slightly)
+<b>Query to use in the GraphQL Playground:</b>
+```
+query ExampleQuery {
+  allFilms {
+    films {
+      title
+      rating
+    }
+  }
+}
+```
+
+<b>This should then return a list of of filmes with overridden title fields and a rating field which originally did not exist:</b>
+```
+"films": [
+        {
+          "title": "Terminator 2: Judgement Day",
+          "rating": 4
+        },
+        {
+          "title": "Terminator 2: Judgement Day",
+          "rating": 1
+        },
+        {
+          "title": "The Terminator",
+          "rating": 5
+        },
+        {
+          "title": "Terminaator 3: Rise of the Machines",
+          "rating": 4
+        },
+        {
+          "title": "Terminaator 3: Rise of the Machines",
+          "rating": 5
+        },
+        {
+          "title": "Terminator 2: Judgement Day",
+          "rating": 4
+        }
+      ]
+```
+
+# Original Documentation (with modifications)
 
 Mock your future API or extend the existing API with realistic data from [faker.js](https://fakerjs.dev/). **No coding required**.
 All you need is to write [GraphQL SDL](https://alligator.io/graphql/graphql-sdl/). Don't worry, we will provide you with examples in our SDL editor.
@@ -49,19 +107,22 @@ No need to remember or read any docs. Autocompletion is included!
 - ✨ Support for proxying existing GraphQL API and extending it with faked data
   ![Extend mode diagram](./docs/extend-mode.gif)
 
-## Install
+## Setup
 
-    ```
-    docker-compose up
-    ```
-
-Or pull down the independanct backend and frontend projects and run each with:
+Clone this Repository
 ```
-make dev
+# clone the repository
+git clone git@github.com:joepk90/graphql-faker-refactored.git
+
+# move into the repository
+cd graphql-faker-refactored
+
+# start the service
+make start
+
 ```
 
-The configuration has now been moved to an `.env` file. THis is true for this repository, which just includes a `docker-compose.yaml` file, and the projects themselves
-
+The configuration has now been moved to an `.env` file. This is true for this repository, which just includes a `docker-compose.yaml` file, and the front end and back end projects themselves.
 
 
 ### Options
