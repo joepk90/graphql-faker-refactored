@@ -124,6 +124,9 @@ git clone git@github.com:joepk90/graphql-faker-refactored.git
 # move into the repository
 cd graphql-faker-refactored
 
+# move into the repository
+cp .env.example .env
+
 # start the service
 make start
 ```
