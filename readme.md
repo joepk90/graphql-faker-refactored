@@ -53,28 +53,34 @@ query ExampleQuery {
 ```
 "films": [
         {
-          "title": "Terminator 2: Judgement Day",
-          "rating": 4
-        },
-        {
-          "title": "Terminator 2: Judgement Day",
-          "rating": 1
+          "title": "Terminaator 3: Rise of the Machines",
+          "rating": 5,
+          "director": "George Lucas"
         },
         {
           "title": "The Terminator",
-          "rating": 5
+          "rating": 4,
+          "director": "Irvin Kershner"
         },
         {
           "title": "Terminaator 3: Rise of the Machines",
-          "rating": 4
+          "rating": 5,
+          "director": "Richard Marquand"
         },
         {
-          "title": "Terminaator 3: Rise of the Machines",
-          "rating": 5
+          "title": "The Terminator",
+          "rating": 5,
+          "director": "George Lucas"
         },
         {
           "title": "Terminator 2: Judgement Day",
-          "rating": 4
+          "rating": 1,
+          "director": "George Lucas"
+        },
+        {
+          "title": "Terminaator 3: Rise of the Machines",
+          "rating": 1,
+          "director": "George Lucas"
         }
       ]
 ```
@@ -110,7 +116,7 @@ No need to remember or read any docs. Autocompletion is included!
 
 ## Setup
 
-Clone this Repository
+Clone and run the project:
 ```
 # clone the repository
 git clone git@github.com:joepk90/graphql-faker-refactored.git
@@ -120,22 +126,21 @@ cd graphql-faker-refactored
 
 # start the service
 make start
-
 ```
 
-The configuration has now been moved to an `.env` file. This is true for this repository, which just includes a `docker-compose.yaml` file, and the front end and back end projects themselves.
+The configuration has now been moved to an `.env` file. This is true for this repository, which just includes a `docker-compose.yaml` file, and the front end and back end projects too.
 
 
 ### Options
 
-- `ALLOWED_HOSTS` hosts allowed to access the server (to manage cors locally)
-- `PORT` HTTP Port [default: `env.PORT` or `9002`]
-- `SCHEMA_FILE_NAME` Name of the Schema file you want to edit (TODO these should shared locally with the host computer)
-- `EXTEND_URL` URL to existing GraphQL server to extend
-- `OPEN_BROWSER` Open the server (TODO this feature should be changed to the front end editor instead)
-- `CUSTOM_HEADERS` Specify which headers should be forwarded to the proxied server (TODO this should be changed to forward headers)
- 
-See `.env `file for other options
+| Option              | Description                                                                                     |
+|---------------------|-------------------------------------------------------------------------------------------------|
+| `ALLOWED_HOSTS`     | Hosts allowed to access the server (to manage CORS locally).                                    |
+| `PORT`              | HTTP Port [default: `env.PORT` or `9002`].                                                     |
+| `SCHEMA_FILE_NAME`  | Name of the Schema file you want to edit (TODO: these should be shared locally with the host computer). |
+| `EXTEND_URL`        | URL to existing GraphQL server to extend.                                                      |
+| `OPEN_BROWSER`      | Open the server (TODO: this feature should be changed to the front-end editor instead).         |
+| `CUSTOM_HEADERS`    | Specify which headers should be forwarded to the proxied server (TODO: this should be changed to forward headers). |
 
-This option has been removed, but could be re-added
-- `-H`, `--header` Specify headers to the proxied server in cURL format, e.g.: `Authorization: bearer XXXXXXXXX`
+This option has been removed but could be re-added:
+- `-H`, `--header`: Specify headers to the proxied server in cURL format, e.g., `Authorization: bearer XXXXXXXXX`.
