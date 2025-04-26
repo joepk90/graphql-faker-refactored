@@ -20,7 +20,7 @@ In the original project, it was not possible override existing fields on existin
 
 Looking at the existing project, it seemed to me there was a great deal of duplicated and unneccesary logic, especially around the options object which get passed around everywhere. In order to understand where this issue was occuring, understanding the project was required, which led to a refactor; seperating the Editor from the Server, removing the `options` config object and `cli` logic and opting for using a `.env` file and `docker-compose`.
 
-It is now possible to override fields on existing types and return data specified in the schema editor. To see this in action the following Schema override and Query can be used.
+It is now possible to override fields on existing types and return data specified in the schema editor, meanwhile any existing fields on the type that have not been overridden will continue to return real data as normal. To see this in action the following Schema override and Query can be used.
 
 For this example the public `https://swapi-graphql.netlify.app` endpoint is being used, which has an existing `Film` type and `allFilms` Query which returns a list of films. In the example below, we are overriding the `Film` type, and define the the values of the film titles ourselves:
 
@@ -43,6 +43,7 @@ query ExampleQuery {
     films {
       title
       rating
+      director
     }
   }
 }
