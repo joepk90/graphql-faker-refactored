@@ -10,7 +10,7 @@ The Back End Project can be found here:
 The Front End Project can be found here:
 [github.com/joepk90/graphql-faker-editor](https://github.com/joepk90/graphql-faker-editor)
 
-To contribute to the project, see the development guide [here](https://github.com/joepk90/graphql-faker-refactored/blob/main/development.md).
+To contribute to the project, see the development guide [here](https://github.com/joepk90/graphql-faker-refactored/blob/main/docs/development.md).
 
 
 ## Reasoning for the Refactor
@@ -179,4 +179,4 @@ This option has been removed but could be re-added:
 
 ## Contributors
 
-Notes regarding [contributions](https://github.com/joepk90/graphql-faker-refactored/blob/main/contributors.md).
+Notes regarding [contributions](https://github.com/joepk90/graphql-faker-refactored/blob/main/docs/contributors.md).
