@@ -1,4 +1,4 @@
-![GraphQL Faker logo](./docs/faker-logo-text.png)
+![GraphQL Faker logo](./assets/faker-logo-text.png)
 
 # GraphQL Faker Refactored
 
@@ -91,7 +91,7 @@ Mock your future API or extend the existing API with realistic data from [faker.
 All you need is to write [GraphQL SDL](https://alligator.io/graphql/graphql-sdl/). Don't worry, we will provide you with examples in our SDL editor.
 
 In the GIF below we add fields to types inside real GitHub API and you can make queries from GraphiQL, Apollo, Relay, etc. and receive **real data mixed with mock data.**
-![demo-gif](./docs/demo.gif)
+![demo-gif](./assets/demo.gif)
 
 ## How does it work?
 
@@ -112,7 +112,7 @@ No need to remember or read any docs. Autocompletion is included!
 - Runs as a local server (can be called from browser, cURL, your app, etc.)
 - Interactive editor with autocompletion for directives with GraphiQL embedded
 - ✨ Support for proxying existing GraphQL API and extending it with faked data
-  ![Extend mode diagram](./docs/extend-mode.gif)
+  ![Extend mode diagram](./assets/extend-mode.gif)
 
 ## Setup
 
