@@ -12,9 +12,9 @@ services:
       - CUSTOM_HEADERS=${CUSTOM_HEADERS}
       - SCHEMA_FILE_NAME=${SCHEMA_FILE_NAME}
       - FORWARD_HEADERS=${FORWARD_HEADERS}
-      - OPEN_BROWSER=${OPEN_BROWSER}
       - EXTEND_URL=${EXTEND_URL}
-      - AUTH_TOKEN=${AUTH_TOKEN} # required for voyager (if voyager required auth)
+    volumes:
+      - ./.headers:/app/.headers
     restart: unless-stopped
 
   graphql-faker-editor:
@@ -24,7 +24,6 @@ services:
       - "8080:8080" # expose editor
     environment:
       - VITE_API_URL=${VITE_API_URL}
-      - VITE_AUTH_TOKEN=${VITE_AUTH_TOKEN} # required for voyager (if voyager required auth)
     restart: unless-stopped
     depends_on: 
       - graphql-faker-server
