@@ -2,7 +2,7 @@
 
 # GraphQL Faker Refactored
 
-This project is technically a refactor of the [https://github.com/graphql-kit/graphql-faker](github.com/graphql-kit/graphql-faker) project - The dependancies have been updated and the project modernised. React has been updated, as well as the Code Editor (Code Mirror).
+This project is technically a refactor of the [https://github.com/graphql-kit/graphql-faker](https://github.com/graphql-kit/graphql-faker) project - The dependancies have been updated and the project modernised. React has been updated, as well as the Code Editor (Code Mirror).
 
 The Back End Project can be found here:
 [github.com/joepk90/graphql-faker-server](https://github.com/joepk90/graphql-faker-server) 
@@ -147,3 +147,7 @@ The configuration has now been moved to an `.env` file. This is true for this re
 
 This option has been removed but could be re-added:
 - `-H`, `--header`: Specify headers to the proxied server in cURL format, e.g., `Authorization: bearer XXXXXXXXX`.
+
+## Contributors
+
+Notes regarding [contributions](https://github.com/joepk90/graphql-faker-refactored/blob/main/contributors.md).
