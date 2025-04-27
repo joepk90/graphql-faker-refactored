@@ -116,7 +116,7 @@ No need to remember or read any docs. Autocompletion is included!
 
 ## Setup
 
-Clone and run the project:
+Clone and run the project using Docker Compose:
 ```
 # clone the repository
 git clone git@github.com:joepk90/graphql-faker-refactored.git
@@ -131,12 +131,40 @@ cp .env.example .env
 make start
 ```
 
-The configuration has now been moved to an `.env` file. This is true for this repository, which just includes a `docker-compose.yaml` file, and the front end and back end projects too.
+The configuration has now been moved to an `.env` file. This is true for this repository and the front end and back end projects too.
 
 
-### Options
+### Or run with Docker
 
-| Option              | Description                                                                                     |
+Run the service with no customizations:
+```
+docker run -it \
+	-p 9092:9092 \
+	-p 8080:8080 \
+	jparkkennaby/graphql-faker-refactored
+```
+
+Or run the service with customizations (extending the swapi-graphql.netlify.app graphql and using custom headers)
+```
+docker run -it \
+	-p 9092:9092 \
+	-p 8080:8080 \
+	-e SCHEMA_FILE_NAME=schema_extension \
+	-e ALLOWED_HOSTS=http://localhost:8080 \
+	-e SERVER_PORT=9092 \
+	-e EXTEND_URL=https://swapi-graphql.netlify.app/graphql \
+	-e CUSTOM_HEADERS=TRUE \
+	-v $(PWD)/.headers:/app/.headers \
+  	jparkkennaby/graphql-faker-refactored
+```
+
+*Note: to use custom headers, a `.headers/.headers.json` file must be accessible in the directory where the `docker run` command was used*
+
+
+
+### *Options*
+
+| *Option*              | *Description*                                                                                     |
 |---------------------|-------------------------------------------------------------------------------------------------|
 | `EXTEND_URL`        | URL to an existing GraphQL server to extend.                                           |
 | `FORWARD_HEADERS`   | Specify which headers should be forwarded to the proxied server                  |
