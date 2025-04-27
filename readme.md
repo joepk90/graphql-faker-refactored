@@ -138,12 +138,13 @@ The configuration has now been moved to an `.env` file. This is true for this re
 
 | Option              | Description                                                                                     |
 |---------------------|-------------------------------------------------------------------------------------------------|
-| `ALLOWED_HOSTS`     | Hosts allowed to access the server (to manage CORS locally).                                    |
-| `PORT`              | HTTP Port [default: `env.PORT` or `9002`].                                                     |
-| `SCHEMA_FILE_NAME`  | Name of the Schema file you want to edit (TODO: these should be shared locally with the host computer). |
-| `EXTEND_URL`        | URL to existing GraphQL server to extend.                                                      |
-| `OPEN_BROWSER`      | Open the server (TODO: this feature should be changed to the front-end editor instead).         |
-| `CUSTOM_HEADERS`    | Specify which headers should be forwarded to the proxied server (TODO: this should be changed to forward headers). |
+| `EXTEND_URL`        | URL to an existing GraphQL server to extend.                                           |
+| `FORWARD_HEADERS`   | Specify which headers should be forwarded to the proxied server                  |
+| `SCHEMA_FILE_NAME`  | Name of the Schema file you want to edit. [default: `schema_extension`]           |
+| `CUSTOM_HEADERS`    | Option to add custom headers to GraphQL requests (Currently required in order to use Voyager) [default: `FALSE`].   |
+| `ALLOWED_HOSTS`     | Hosts allowed to access the server (primarily used to manage CORS locally) [default: `http://localhost:8080,`].    |
+| `SERVER_PORT`       | HTTP Port [default: `9002`].  | `VITE_API_URL`      | URL of the Server [default: `http://localhost:9092`]   |
+
 
 This option has been removed but could be re-added:
 - `-H`, `--header`: Specify headers to the proxied server in cURL format, e.g., `Authorization: bearer XXXXXXXXX`.
