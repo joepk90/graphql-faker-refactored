@@ -42,7 +42,8 @@
 - [ ] Deploy the service to Terraform?
 
 ### Editor
-- [ ] Setup a Provider for the App state logic - A lot could be moved out of the App component.
+- [x] Setup a Provider for the App state logic - A lot could be moved out of the App component.
+- [x] Setup React Query to handle calls to the server
 - [ ] Move Faker definitions to the backend (either move validation logic to back end, or move validation logic to NPM package)
 - [ ] Fix minor Editor issues:
     [x] - keyboard shortcuts aren't working (ctr+z, crt+s etc.)
