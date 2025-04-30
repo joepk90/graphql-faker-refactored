@@ -1,0 +1,92 @@
+name: Deploy
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+
+  # if testing is required (create branch called ci-updates)
+  # push:
+  #   branches:
+  #     - ci-updates
+
+permissions:
+  id-token: write # Required for OIDC authentication (workload identity provider)
+  contents: read # Required to read the repo content
+
+env:
+  DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
+  DOCKER_ID: ${{ secrets.DOCKER_ID }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+  GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
+  GOOGLE_PROJECT_NUMBER: ${{ secrets.GOOGLE_PROJECT_NUMBER }}
+  GOOGLE_WORKLOAD_IDENTITY_POOL_ID: ${{ secrets.GOOGLE_WORKLOAD_IDENTITY_POOL_ID }}
+  GOOGLE_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}
+  GOOGLE_SERVICE_ACCOUNT_EMAIL_USER_NAME: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL_USER_NAME }}
+  COMMIT_SHA: ${{ github.sha }}
+
+  # constuctured env vars (from secrets)
+  WORKLOAD_IDENTITY_PROVIDER: "projects/${{ secrets.GOOGLE_PROJECT_NUMBER }}/locations/global/workloadIdentityPools/${{ secrets.GOOGLE_WORKLOAD_IDENTITY_POOL_ID }}/providers/${{ secrets.GOOGLE_WORKLOAD_IDENTITY_PROVIDER }}"
+  SERVICE_ACCOUNT_EMAIL: "${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL_USER_NAME }}@${{ secrets.GOOGLE_PROJECT_ID }}.iam.gserviceaccount.com"
+
+jobs:
+  publish:
+    name: Pubish
+    needs: test
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Docker Build
+        run: make ci-docker-build
+
+      - name: Docker Push
+        run: make ci-docker-push
+
+      - id: "auth"
+        name: "Authenticate to Google Cloud"
+        uses: "google-github-actions/auth@v2"
+        with:
+          workload_identity_provider: "${{ env.WORKLOAD_IDENTITY_PROVIDER }}"
+          service_account: "${{ env.SERVICE_ACCOUNT_EMAIL }}"
+          token_format: "access_token"
+
+      - name: Check/Create Artifact Registry Repository
+        run: make ci-check-create-repository
+
+      - name: GCR Push
+        run: make ci-gcr-push
+
+  # deploy-staging:
+  #   name: Deployment (Staging)
+  #   needs: publish
+  #   runs-on: ubuntu-22.04
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+
+  #     - name: "Authenticate to Google Cloud"
+  #       id: "auth"
+  #       uses: "google-github-actions/auth@v2"
+  #       with:
+  #         workload_identity_provider: "${{ env.WORKLOAD_IDENTITY_PROVIDER }}"
+  #         service_account: "${{ env.SERVICE_ACCOUNT_EMAIL }}"
+  #         token_format: "access_token"
+
+  # - name: Deploy
+  #   id: deploy
+  #   uses: "google-github-actions/deploy-cloudrun@v2"
+  #   with:
+  #     service: "graphql-faker-refactored"
+  #     # TODO remove duplicate deplaration of of google repo url (see makefile)
+  #     image: "us-central1-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT_ID }}/containers/graphql-faker-refactored:latest"
+  #     region: "us-central1"
+  #     project_id: ${{ env.GOOGLE_PROJECT_ID }}
+
+  # - name: Show Output
+  #   run: echo ${{ steps.deploy.outputs.url }}
