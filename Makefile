@@ -1,15 +1,15 @@
-DOCKER_REGISTRY=jparkkennaby
-SERVER_IMAGE_NAME=graphql-faker-server
-EDITOR_IMAGE_NAME=graphql-faker-editor
+# DOCKER_REGISTRY=jparkkennaby
+SERVER_DOCKER_CONTAINER=graphql-faker-server
+EDITOR_DOCKER_CONTAINER=graphql-faker-editor
 DOCKER_CONTAINER=graphql-faker-refactored
-SERVER_DOCKER_IMAGE=$(DOCKER_REGISTRY)/$(SERVER_IMAGE_NAME)
-EDITOR_DOCKER_IMAGE=$(DOCKER_REGISTRY)/$(EDITOR_IMAGE_NAME)
-DOCKER_IMAGE=$(DOCKER_REGISTRY)/$(DOCKER_CONTAINER)
+SERVER_DOCKER_REPOSITORY=$(DOCKER_REGISTRY)/$(SERVER_DOCKER_CONTAINER)
+EDITOR_DOCKER_REPOSITORY=$(DOCKER_REGISTRY)/$(EDITOR_DOCKER_CONTAINER)
+DOCKER_REPOSITORY=$(DOCKER_REGISTRY)/$(DOCKER_CONTAINER)
 LATEST_TAG=latest
 
-# docker-pull:
-# 	docker pull $(SERVER_DOCKER_IMAGE):$(LATEST_TAG)
-# 	docker pull $(EDITOR_DOCKER_IMAGE):$(LATEST_TAG)
+docker-pull:
+	docker pull $(SERVER_DOCKER_REPOSITORY):$(LATEST_TAG)
+	docker pull $(EDITOR_DOCKER_REPOSITORY):$(LATEST_TAG)
 
 start:
 	docker-compose up -d
@@ -18,19 +18,19 @@ stop:
 	docker-compose down
 
 docker-build:
-	docker build -t ${DOCKER_IMAGE} .
+	docker build -t ${DOCKER_REPOSITORY} .
 
 docker-tag:
-	docker tag ${DOCKER_IMAGE} ${DOCKER_IMAGE}:$(LATEST_TAG)
+	docker tag ${DOCKER_REPOSITORY} ${DOCKER_REPOSITORY}:$(LATEST_TAG)
 
 docker-push:
-	docker push ${DOCKER_IMAGE}:$(LATEST_TAG)
+	docker push ${DOCKER_REPOSITORY}:$(DOCKER_REPOSITORY)
 
 docker-run:
 	docker run -it \
 	-p 9092:9092 \
 	-p 8080:8080 \
-	${DOCKER_IMAGE}
+	${DOCKER_REPOSITORY}
 
 
 docker-run-with-custom-envs:
