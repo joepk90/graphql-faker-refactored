@@ -55,6 +55,10 @@ GOOGLE_AR_REPO_PKG=docker.pkg.dev
 GOOGLE_AR_REPO_URL=${GOOGLE_AR_REPO_LOCATION}-${GOOGLE_AR_REPO_PKG}
 GOOGLE_REPOSITORY=${GOOGLE_AR_REPO_URL}/${GOOGLE_PROJECT_ID}/${GOOGLE_AR_REPO_NAME}/$(DOCKER_CONTAINER)
 
+ci-docker-auth:
+	@echo "Logging in to $(DOCKER_REGISTRY) as $(DOCKER_ID)"
+	@docker login -u $(DOCKER_ID) -p $(DOCKER_PASSWORD)
+
 ci-docker-build:
 	# docker build -t $(DOCKER_REPOSITORY):$(COMMIT_SHA) ./
 	docker build -t $(DOCKER_REPOSITORY):$(LATEST_TAG) ./
