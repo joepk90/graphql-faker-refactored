@@ -8,9 +8,9 @@ on:
       - master
 
   # if testing is required (create branch called ci-updates)
-  # push:
-  #   branches:
-  #     - ci-updates
+  push:
+    branches:
+      - ci-updates
 
 permissions:
   id-token: write # Required for OIDC authentication (workload identity provider)
