@@ -40,6 +40,7 @@ docker-run-with-custom-envs:
 	-e ALLOWED_HOSTS=http://localhost:8080 \
 	-e SERVER_PORT=9092 \
 	-e EXTEND_URL=https://swapi-graphql.netlify.app/graphql \
+	-e VITE_API_URL=http://localhost:9092 \
 	-e CUSTOM_HEADERS=TRUE \
 	-v $(PWD)/.headers:/app/.headers \
 	${DOCKER_IMAGE}
