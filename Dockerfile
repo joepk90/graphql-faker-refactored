@@ -21,18 +21,23 @@ RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
 # Clone the backend (graphql-faker-server)
-RUN git clone https://github.com/joepk90/graphql-faker-server.git ./
+RUN git clone https://github.com/joepk90/graphql-faker-server.git ./api
 
-RUN npm install
-RUN npm run build
+RUN cd api && npm install
+RUN cd api &&  npm run build
 
 # copy client dist files to current build
 COPY --from=frontend-builder /app/dist ./client
-RUN npm install -g serve concurrently
+COPY --from=frontend-builder /app/entrypoint.js ./entrypoint.js
+RUN npm install -g concurrently
+RUN npm install serve-handler
 
 EXPOSE 8080
 EXPOSE 9092
 
 # Start both servers
+# CMD ["concurrently", "-k", "-n", "BACKEND,FRONTEND", "-c", "blue,green", \
+#       "npm run serve:prod", "node entrypoint.js client"]
+
 CMD ["concurrently", "-k", "-n", "BACKEND,FRONTEND", "-c", "blue,green", \
-      "npm run serve:prod", "serve -s client -p 8080"]
+     "cd api && npm run serve:prod", "node entrypoint.js client"]
