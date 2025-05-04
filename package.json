@@ -1,0 +1,19 @@
+{
+  "name": "graphql-faker-refactored",
+  "version": "1.0.0",
+  "description": "![GraphQL Faker logo](./assets/faker-logo-text.png)",
+  "main": "entrypoint.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "http-proxy-middleware": "^3.0.5",
+    "serve-handler": "^6.1.6"
+  }
+}
