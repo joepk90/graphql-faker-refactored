@@ -12,7 +12,14 @@ const PORT = process.env.PORT || 8080;
 //     next();
 // });
 
-app.use('/api', createProxyMiddleware({ target: 'http://localhost:3000', changeOrigin: true }));
+app.use('/api', createProxyMiddleware({
+    target: 'http://localhost:3000',
+    changeOrigin: true,
+    pathRewrite: {
+      '^/api': '', // removes /api prefix when forwarding
+    },
+}));
+
 app.use('/', createProxyMiddleware({ target: 'http://localhost:5173', changeOrigin: true }));
 
 app.listen(PORT, () => {
