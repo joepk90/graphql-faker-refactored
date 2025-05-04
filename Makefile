@@ -16,6 +16,10 @@ start:
 stop:
 	docker-compose down
 
+# debugging:
+# --progress=plain
+# --no-cache
+
 docker-build:
 	docker build -t ${DOCKER_IMAGE} .
 
