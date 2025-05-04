@@ -1,0 +1,24 @@
+{
+  "name": "graphql-faker-refactored",
+  "version": "1.0.0",
+  "description": "![GraphQL Faker logo](./assets/faker-logo-text.png)",
+  "main": "entrypoint.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve:backend": "cd api && npm run serve:prod",
+    "serve:frontend": "cd client && node entrypoint.js",
+    "serve:proxy": "node entrypoint.js",
+    "start": "concurrently -k -n BACKEND,FRONTEND,PROXY -c blue,green,magenta \"npm run serve:backend\" \"npm run serve:frontend\" \"npm run serve:proxy\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^9.1.2",
+    "express": "^5.1.0",
+    "http-proxy-middleware": "^3.0.5",
+    "serve-handler": "^6.1.6"
+  }
+}

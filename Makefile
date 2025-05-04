@@ -16,6 +16,7 @@ start:
 stop:
 	docker-compose down
 
+# --no-cache
 docker-build:
 	docker build -t ${DOCKER_IMAGE} .
 
@@ -27,20 +28,28 @@ docker-push:
 
 docker-run:
 	docker run -it \
+	-p 8081:8081 \
 	-p 9092:9092 \
 	-p 8080:8080 \
+	-e VITE_API_URL=/api \ # TODO REVIEW
 	${DOCKER_IMAGE}
 
 
 docker-run-with-custom-envs:
 	docker run -it \
+	-p 8081:8081 \
 	-p 9092:9092 \
 	-p 8080:8080 \
 	-e SCHEMA_FILE_NAME=schema_extension \
 	-e ALLOWED_HOSTS=http://localhost:8080 \
 	-e SERVER_PORT=9092 \
 	-e EXTEND_URL=https://swapi-graphql.netlify.app/graphql \
-	-e VITE_API_URL=http://localhost:9092 \
+	-e VITE_API_URL=/api \
 	-e CUSTOM_HEADERS=TRUE \
 	-v $(PWD)/.headers:/app/.headers \
 	${DOCKER_IMAGE}
+
+
+# command only for Dockerfile (requires certain directory structure setup in Dockerfile)
+# docker-start:
+# 	npm run start	
