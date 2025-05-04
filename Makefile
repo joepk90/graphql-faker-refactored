@@ -16,7 +16,7 @@ start:
 stop:
 	docker-compose down
 
-# --no-cache
+# --no-cache (useful for re-downloading git repos)
 docker-build:
 	docker build -t ${DOCKER_IMAGE} .
 
