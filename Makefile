@@ -32,9 +32,7 @@ docker-push:
 docker-run:
 	docker run -it \
 	-p 8080:8080 \
-	-p 3000:3000 \
-	-p 5173:5173 \
-	-e VITE_API_URL=/api \
+	-e VITE_API_URL="/api" \
 	${DOCKER_IMAGE}
 
 
