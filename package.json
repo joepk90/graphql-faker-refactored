@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve:backend": "cd api && npm run serve:prod",
+    "serve:backend": "cd api && npm start",
     "serve:frontend-js": "cd client && npm run serve:js",
     "serve:frontend-bash": "cd client && npm run serve:bash",
     "serve:proxy": "node entrypoint.js",

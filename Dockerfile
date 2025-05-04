@@ -23,6 +23,7 @@ WORKDIR /app
 # Clone the backend (graphql-faker-server)
 RUN git clone https://github.com/joepk90/graphql-faker-server.git ./
 
+# TODO make PROD installation work. we currently use the dev server (nodemon) - see the package.json serve:backend script
 RUN npm install
 RUN npm run build
 
