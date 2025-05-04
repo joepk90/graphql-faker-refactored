@@ -9,9 +9,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve:backend": "cd api && npm run serve:prod",
-    "serve:frontend": "cd client && node entrypoint.js",
+    "serve:frontend-js": "cd client && npm run serve:js",
+    "serve:frontend-bash": "cd client && npm run serve:bash",
     "serve:proxy": "node entrypoint.js",
-    "start": "concurrently -k -n BACKEND,FRONTEND,PROXY -c blue,green,magenta \"npm run serve:backend\" \"npm run serve:frontend\" \"npm run serve:proxy\""
+    "start": "concurrently -k -n BACKEND,FRONTEND,PROXY -c blue,green,magenta \"npm run serve:backend\" \"npm run serve:frontend-bash\" \"npm run serve:proxy\""
   },
   "author": "",
   "license": "ISC",

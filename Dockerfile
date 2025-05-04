@@ -37,9 +37,16 @@ WORKDIR /app
 # copy client dist files, package.json and entryfile to client directory
 COPY --from=client /app/dist ./client/dist
 COPY --from=client /app/package.json ./client/package.json
-# COPY --from=client /app/package-lock.json ./client/package-lock.json
-COPY --from=client /app/entrypoint.js ./client/entrypoint.js
-RUN cd client && npm install --production
+COPY --from=client /app/package-lock.json ./client/package-lock.json
+
+# run client using js
+# COPY --from=client /app/entrypoint.js ./client/entrypoint.js
+# RUN cd client && npm install --production
+
+# run client using bash
+RUN npm install -g serve
+COPY --from=client /app/entrypoint.sh ./client/entrypoint.sh
+RUN chmod +x ./client/entrypoint.sh
 
 # TODO make PROD installation work
 # copy client dist files, package.json and entryfile to client directory
