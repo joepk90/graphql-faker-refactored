@@ -139,19 +139,19 @@ The configuration has now been moved to an `.env` file. This is true for this re
 Run the service with no customizations:
 ```
 docker run -it \
-	-p 9092:9092 \
-	-p 8080:8080 \
+	-p 3000:3000 \
+	-p 5173:5173 \
 	jparkkennaby/graphql-faker-refactored
 ```
 
 Or run the service with customizations (extending the swapi-graphql.netlify.app graphql and using custom headers)
 ```
 docker run -it \
-	-p 9092:9092 \
-	-p 8080:8080 \
+	-p 3000:3000 \
+	-p 5173:5173 \
 	-e SCHEMA_FILE_NAME=schema_extension \
-	-e ALLOWED_HOSTS=http://localhost:8080 \
-	-e SERVER_PORT=9092 \
+	-e ALLOWED_HOSTS=http://localhost:5173 \
+	-e SERVER_PORT=3000 \
 	-e EXTEND_URL=https://swapi-graphql.netlify.app/graphql \
 	-e CUSTOM_HEADERS=TRUE \
 	-v $(PWD)/.headers:/app/.headers \
@@ -170,8 +170,8 @@ docker run -it \
 | `FORWARD_HEADERS`   | Specify which headers should be forwarded to the proxied server                  |
 | `SCHEMA_FILE_NAME`  | Name of the Schema file you want to edit. [default: `schema_extension`]           |
 | `CUSTOM_HEADERS`    | Option to add custom headers to GraphQL requests (Currently required in order to use Voyager) [default: `FALSE`].   |
-| `ALLOWED_HOSTS`     | Hosts allowed to access the server (primarily used to manage CORS locally) [default: `http://localhost:8080,`].    |
-| `SERVER_PORT`       | HTTP Port [default: `9002`].  | `VITE_API_URL`      | URL of the Server [default: `http://localhost:9092`]   |
+| `ALLOWED_HOSTS`     | Hosts allowed to access the server (primarily used to manage CORS locally) [default: `http://localhost:5173,`].    |
+| `SERVER_PORT`       | HTTP Port [default: `9002`].  | `VITE_API_URL`      | URL of the Server [default: `http://localhost:3000`]   |
 
 
 This option has been removed but could be re-added:

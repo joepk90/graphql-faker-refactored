@@ -58,9 +58,9 @@ COPY entrypoint.js ./entrypoint.js
 RUN npm install
 
 
-EXPOSE 8081
 EXPOSE 8080
-EXPOSE 9092
+EXPOSE 5173
+EXPOSE 3000
 
 # Start Client, API and Proxy Server
 CMD ["npm", "run", "start"]

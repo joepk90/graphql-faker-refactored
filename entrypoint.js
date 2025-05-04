@@ -4,7 +4,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 
 const app = express();
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 8080;
 
 // debug
 // app.use((req, res, next) => {
@@ -12,8 +12,8 @@ const PORT = process.env.PORT || 8081;
 //     next();
 // });
 
-app.use('/api', createProxyMiddleware({ target: 'http://localhost:9092', changeOrigin: true }));
-app.use('/', createProxyMiddleware({ target: 'http://localhost:8080', changeOrigin: true }));
+app.use('/api', createProxyMiddleware({ target: 'http://localhost:3000', changeOrigin: true }));
+app.use('/', createProxyMiddleware({ target: 'http://localhost:5173', changeOrigin: true }));
 
 app.listen(PORT, () => {
     console.log(`Proxy Server is running on http://localhost:${PORT}`);

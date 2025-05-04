@@ -5,7 +5,7 @@ services:
     image: jparkkennaby/graphql-faker-server:latest # todo rename image to graphql-faker-server
     container_name: graphql-faker-server
     ports:
-      - "9092:9092" # expose server
+      - "3000:3000" # expose server
     environment:
       - ALLOWED_HOSTS=${ALLOWED_HOSTS}
       - PORT=${PORT}
@@ -21,7 +21,7 @@ services:
     image: jparkkennaby/graphql-faker-editor:latest # todo graphql-faker-editor
     container_name: graphql-faker-editor
     ports:
-      - "8080:8080" # expose editor
+      - "5173:5173" # expose editor
     environment:
       - VITE_API_URL=${VITE_API_URL}
     restart: unless-stopped

@@ -17,7 +17,7 @@ cd graphql-faker-editor
 make dev
 ```
 
-If using the defailts, the server should be running at: [localhost:9092](http://localhost:9092)
+If using the defailts, the server should be running at: [localhost:3000](http://localhost:3000)
 
 ---
 
@@ -37,4 +37,4 @@ cd graphql-faker-server
 make dev
 ```
 
-If using the defailts, the editor should be running at: [localhost:8080](http://localhost:8080)
+If using the defailts, the editor should be running at: [localhost:5173](http://localhost:5173)

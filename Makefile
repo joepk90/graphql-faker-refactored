@@ -28,21 +28,21 @@ docker-push:
 
 docker-run:
 	docker run -it \
-	-p 8081:8081 \
-	-p 9092:9092 \
 	-p 8080:8080 \
-	-e VITE_API_URL=/api \ # TODO REVIEW
+	-p 3000:3000 \
+	-p 5173:5173 \
+	-e VITE_API_URL=/api \
 	${DOCKER_IMAGE}
 
 
 docker-run-with-custom-envs:
 	docker run -it \
-	-p 8081:8081 \
-	-p 9092:9092 \
 	-p 8080:8080 \
+	-p 3000:3000 \
+	-p 5173:5173 \
 	-e SCHEMA_FILE_NAME=schema_extension \
-	-e ALLOWED_HOSTS=http://localhost:8080 \
-	-e SERVER_PORT=9092 \
+	-e ALLOWED_HOSTS=http://localhost:5173 \
+	-e SERVER_PORT=3000 \
 	-e EXTEND_URL=https://swapi-graphql.netlify.app/graphql \
 	-e VITE_API_URL=/api \
 	-e CUSTOM_HEADERS=TRUE \
