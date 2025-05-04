@@ -16,6 +16,7 @@ start:
 stop:
 	docker-compose down
 
+# --no-cache
 docker-build:
 	docker build -t ${DOCKER_IMAGE} .
 
