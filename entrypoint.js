@@ -18,3 +18,23 @@ app.use('/', createProxyMiddleware({ target: 'http://localhost:5173', changeOrig
 app.listen(PORT, () => {
     console.log(`Proxy Server is running on http://localhost:${PORT}`);
 });
+
+// Handle graceful shutdown
+const shutdown = (msg) => {
+    console.log(msg)
+    console.log('🛑 Gracefully shutting down...');
+    server.close(() => {
+        console.log('✅ Server closed.');
+        process.exit(0); // Exit cleanly
+    });
+
+    // Force exit if still hanging after 10 seconds
+    setTimeout(() => {
+        console.error('❌ Force exiting...');
+        process.exit(1);
+    }, 10000);
+}
+
+process.on('exit', shutdown)
+process.on('SIGINT', shutdown)
+process.on('SIGTERM', shutdown)
