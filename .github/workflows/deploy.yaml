@@ -22,8 +22,8 @@ jobs:
     uses: "joepk90/serverless-apps-ci-workflows/.github/workflows/shared-publish.yaml@main"
     secrets: inherit
 
-  # deploy:
-  #   name: Deploy
-  #   uses: "joepk90/serverless-apps-ci-workflows/.github/workflows/shared-deploy.yaml@main"
-  #   needs: publish
-  #   secrets: inherit
+  deploy:
+    name: Deploy
+    uses: "joepk90/serverless-apps-ci-workflows/.github/workflows/shared-deploy.yaml@main"
+    needs: publish
+    secrets: inherit
