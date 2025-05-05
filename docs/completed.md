@@ -16,6 +16,7 @@
     - [x] Fix CORS version of Graphql Faker! Make it work with UW Graphql AND the open graphql URL.
     - [x] Make graphql-faker-refactors work in GCP (Check Filmons UW setup!)
 - [x] Make PORTS dynamic for both server and client.
+- [x] Review Readme for docments (Lots of changes) + Add links to GCP services in graphql-faker-refactored project! uUpdate ALLOWED_HOSTS notes in this repo
 
 
 ### Editor
@@ -40,3 +41,4 @@
 - [x] Update `.graphql` files (remove/change content)
 - [x] Update the server to use the latest version of Node/Typescript etc. Remove unused dependancies (React)
 - [x] Set default PORT and SCHEMA_FILE_NAME values
+- [x] Server: Improve readabiity of fake definitions/schema logic (organise them, move to an NPM depedancy later)

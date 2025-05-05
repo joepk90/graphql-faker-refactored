@@ -1,15 +1,14 @@
 # To Do's
 
 ## Important
-= [ ] Review Readme for docments (Lots of changes) + Add links to GCP services in graphql-faker-refactored project!
-- [ ] Server: Add missing types! (update noImplicitAny to true in the tsconfig.js file). 
-- [ ] Server: Improve readabiity of fake definitions/schema logic (organise them, move to an NPM depedancy later)
+- [ ] Server: Update the dependancies? (express-graphql) [EST: 1D]
+- [ ] Server: Add missing types! (update noImplicitAny to true in the tsconfig.js file). PR has been started... See branch: setup-types-for-faker-definitions
 - [ ] Create a hard coded graphql user SDL file for the GCP PROD env showing the new override functionality?
 -
 - [ ] Reverse Port logic for both services? Make 8080 the default, but use the the default express/vite ports in DEV.
 - [ ] Move Faker definitions to the backend (either move validation logic to back end, or move validation logic to NPM package)
 - [ ] Graphql Faker Refactored in PROD (GCP) is currently unstable... Likely due to the the server consistently failing, but potentially a Proxy Server issue.
-- [ ] Make Prod distributions work (GraphQL Faker Refactored currently uses dev mode for PROD - This should be fixed)
+- [ ] Make Prod distributions work well (GraphQL Faker Refactored currently uses dev mode for PROD - This should be fixed)
     - This might be very easy to make work for the front end. The back end has issues though - the server inconsistently crashes. It's working at moment because it will crash and restart...
 
 
