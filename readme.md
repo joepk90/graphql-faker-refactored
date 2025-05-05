@@ -4,13 +4,19 @@
 
 This project is technically a refactor of the [https://github.com/graphql-kit/graphql-faker](https://github.com/graphql-kit/graphql-faker) project - The dependancies have been updated and the project modernised. React has been updated, as well as the Code Editor (Code Mirror).
 
-The Back End Project can be found here:
-[github.com/joepk90/graphql-faker-server](https://github.com/joepk90/graphql-faker-server) 
+To see a running example of the project, setup to extend the `https://swapi-graphql.netlify.app` graphql endpoint go to the following URL:  
+<a href="https://graphql-faker-editor-902888310147.us-central1.run.app" target="_blank" rel="noopener noreferrer">graphql-faker-editor-902888310147.us-central1.run.app</a>
 
-The Front End Project can be found here:
-[github.com/joepk90/graphql-faker-editor](https://github.com/joepk90/graphql-faker-editor)
+*Note: It will take a few seconds to start up as it is setup to run on a GCP Cloud Run and requires a cold start...* 
 
-To contribute to the project, see the development guide [here](https://github.com/joepk90/graphql-faker-refactored/blob/main/docs/development.md).
+The Back End Project can be found here:  
+<a href="https://github.com/joepk90/graphql-faker-server" target="_blank" rel="noopener noreferrer">github.com/joepk90/graphql-faker-server</a>
+
+The Front End Project can be found here:  
+<a href="https://github.com/joepk90/graphql-faker-editor" target="_blank" rel="noopener noreferrer">github.com/joepk90/graphql-faker-editor</a>
+
+To contribute to the project, see the development guide
+<a href="https://github.com/joepk90/graphql-faker-refactored/blob/main/docs/development.md" target="_blank" rel="noopener noreferrer">here</a>.
 
 
 ## Reasoning for the Refactor
@@ -139,23 +145,25 @@ The configuration has now been moved to an `.env` file. This is true for this re
 Run the service with no customizations:
 ```
 docker run -it \
-	-p 3000:3000 \
-	-p 5173:5173 \
+	-p 8080:8080 \
+	-e VITE_API_URL="/api" \
 	jparkkennaby/graphql-faker-refactored
 ```
 
 Or run the service with customizations (extending the swapi-graphql.netlify.app graphql and using custom headers)
 ```
 docker run -it \
+	-p 8080:8080 \
 	-p 3000:3000 \
 	-p 5173:5173 \
 	-e SCHEMA_FILE_NAME=schema_extension \
 	-e ALLOWED_HOSTS=http://localhost:5173 \
 	-e SERVER_PORT=3000 \
 	-e EXTEND_URL=https://swapi-graphql.netlify.app/graphql \
+	-e VITE_API_URL=/api \
 	-e CUSTOM_HEADERS=TRUE \
 	-v $(PWD)/.headers:/app/.headers \
-  	jparkkennaby/graphql-faker-refactored
+  jparkkennaby/graphql-faker-refactored
 ```
 
 *Note: to use custom headers, a `.headers/.headers.json` file must be accessible in the directory where the `docker run` command was used*
@@ -170,13 +178,14 @@ docker run -it \
 | `FORWARD_HEADERS`   | Specify which headers should be forwarded to the proxied server                  |
 | `SCHEMA_FILE_NAME`  | Name of the Schema file you want to edit. [default: `schema_extension`]           |
 | `CUSTOM_HEADERS`    | Option to add custom headers to GraphQL requests (Currently required in order to use Voyager) [default: `FALSE`].   |
-| `ALLOWED_HOSTS`     | Hosts allowed to access the server (primarily used to manage CORS locally) [default: `http://localhost:5173,`].    |
-| `SERVER_PORT`       | HTTP Port [default: `9002`].  | `VITE_API_URL`      | URL of the Server [default: `http://localhost:3000`]   |
+| `ALLOWED_HOSTS`     | Hosts allowed to access the server. Set this value to `*` to disable cors. [default: `http://localhost:5173,`  ].     |
+| `SERVER_PORT`       | Set the server port. Primarily for use in PROD  [default: `3000`].  |
+| `CLIENT_PORT`       | Set the clients port. Primarily for use in PROD [default: `5173`]       |
+| `VITE_API_URL`      | URL of the Server [default: `http://localhost:3000`]                    |\
 
 
 This option has been removed but could be re-added:
 - `-H`, `--header`: Specify headers to the proxied server in cURL format, e.g., `Authorization: bearer XXXXXXXXX`.
 
 ## Contributors
-
 Notes regarding [contributions](https://github.com/joepk90/graphql-faker-refactored/blob/main/docs/contributors.md).
